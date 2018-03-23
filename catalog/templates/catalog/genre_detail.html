@@ -1,0 +1,8 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ genre.name }}</h1>
+{% for c in book %}<li><a href="{% url 'catalog:book_detail' c.pk %}">{{ c }}</a></li>{% endfor %}
+
+ 
+{% endblock %}

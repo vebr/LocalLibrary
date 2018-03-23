@@ -1,0 +1,11 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+  <h1>Author Detail</h1>
+
+  <p style="font-size: 24px"><strong>Full Name:</strong> {{ author.full_name }}</a></p>
+  <p><strong>List of book:{% for b in book %}<li><a href="{% url 'catalog:book_detail' b.pk %}">{{ b }}</a> </li>{% endfor %}</strong></p>  
+
+  <div style="margin-left:20px;margin-top:20px">
+  </div>
+{% endblock %}

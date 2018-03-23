@@ -1,0 +1,58 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block extrastyle %}
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	  $( function() {
+	    $( "#datepicker" ).datepicker();
+	  } );
+  </script>
+  <script>
+  $( function() {
+    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+      _renderItem: function( ul, item ) {
+        var li = $( "<li>" ),
+          wrapper = $( "<div>", { text: item.label } );
+ 
+        if ( item.disabled ) {
+          li.addClass( "ui-state-disabled" );
+        }
+ 
+        $( "<span>", {
+          style: item.element.attr( "data-style" ),
+          "class": "ui-icon " + item.element.attr( "data-class" )
+        })
+          .appendTo( wrapper );
+ 
+        return li.append( wrapper ).appendTo( ul );
+      }
+    });
+ 
+    $( "#filesA" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons" );
+ 
+    $( "#filesB" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons customicons" );
+ 
+    $( "#people" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget")
+        .addClass( "ui-menu-icons avatar" );
+  } );
+  </script>
+{% endblock %}
+{% block content %}
+ <h1 style="text-align: center;">Book you want to borrow:<br></h1><h3 style="text-align: center;">{{ book.book }}</h3><br><br>
+
+<form style="text-align: center;" action="" method="post">{% csrf_token %}
+    {{ form.as_p }}<br>
+	<input type="submit" class="btn btn-default" aria-haspopup="true" aria-expanded="false" value="Update" />
+</form>
+{% endblock %}
